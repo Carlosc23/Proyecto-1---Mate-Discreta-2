@@ -39,19 +39,18 @@ public class Heuristica {
 
     /**
      * DondeEsMasBaratoSubir da indicios de donde sera la funcion de heuristica menor
-     * @param origen Nodo inicial del movimiento
-     * @param Futuro Nodo un espacio a la derecha del nodo inicial
      * @return Nodo, entre futuro u origen, en donde es mas barato subir
      */
-    public Nodo DondeEsMasBaratoSubir(Nodo origen, Nodo Futuro){
-        Nodo Destino1 = new Nodo(origen.getX(), origen.getY()+1);
+    public Nodo DondeEsMasBaratoSubir(){
+        Nodo Futuro = new Nodo(inicial.getX()+1, inicial.getY());
+        Nodo Destino1 = new Nodo(inicial.getX(), inicial.getY()+1);
         Nodo Destino2 = new Nodo(Futuro.getX(), Futuro.getY()+1);
 
-        int heuristica1 = heuristica(origen, Destino1);
+        int heuristica1 = heuristica(inicial, Destino1);
         int heuristica2 = heuristica(Futuro, Destino2);
 
         if (heuristica1 <= heuristica2){
-            return origen;
+            return inicial;
         }
         else{
             return Futuro;
@@ -64,16 +63,15 @@ public class Heuristica {
      * Si en dado caso el valor de cruzar es igual para ambos, devolvera null y entenderemos
      * que dependera unicamente de donde sea mas barato subir
      *
-     *
-     * @param origen El nodo original donde esta ahorita
-     * @param futuro El nodo posible si estubiera una posicion arriba
      * @return Nodo en donde sea mas barato la funcion de heuristica
      */
-    public Nodo DondeEsMasBaratoCruzar(Nodo origen, Nodo futuro){
-        Nodo Destino1 = new Nodo(origen.getX() +1, origen.getY());
+    public Nodo DondeEsMasBaratoCruzar(){
+
+        Nodo futuro = new Nodo(inicial.getX(), inicial.getY() +1);
+        Nodo Destino1 = new Nodo(inicial.getX() +1, inicial.getY());
         Nodo Destino2 = new Nodo(futuro.getX() +1, futuro.getY());
 
-        int heuristica1 = heuristica(origen, Destino1);
+        int heuristica1 = heuristica(inicial, Destino1);
         int heuristica2 = heuristica(futuro, Destino2);
 
         if (heuristica1 ==  heuristica2){
@@ -83,24 +81,22 @@ public class Heuristica {
             return futuro;
         }
         else {
-            return origen;
+            return inicial;
         }
 
     }
 
-    public void agregarNodo(Nodo ultimo){
-        recorrido.add(ultimo);
+    public void agregarNodo(){recorrido.add(inicial);
     }
 
     public ArrayList<Nodo> getRecorrido() {
         return recorrido;
     }
 
-    public void addX(){
-        inicial.setX(inicial.getX() +1);
+    public void cruzar(){ inicial.setX(inicial.getX() +1);
     }
 
-    public void addY(){
+    public void subir(){
         inicial.setY(inicial.getY()+1);
     }
 
