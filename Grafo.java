@@ -1,10 +1,14 @@
+import java.util.ArrayList;
+
 /**
  * Created by Julio on 11/14/2016.
  */
 public class Grafo {
     private int height = 15; // "n"
     private int width = 25;	 // "m"
-    Node newNodeCreated = new Node();
+    Node nodeCreated = new Node();
+    private ArrayList< Node > grafoNodos  =  new ArrayList <>();
+    private int totalNodos = grafoNodos.size();
 
     public void setWidth(int width){
         this.width = width;
@@ -22,6 +26,9 @@ public class Grafo {
         return width;
     }
 
-    newNodeCreated.agregarNode("asdsad",8);
+    public void addNodes(){
+        grafoNodos.add(nodeCreated);
+
+    }
 
 }
