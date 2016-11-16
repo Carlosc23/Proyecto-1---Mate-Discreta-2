@@ -6,29 +6,24 @@ import java.util.ArrayList;
 public class Grafo {
     private int height = 15; // "n"
     private int width = 25;	 // "m"
-    Node nodeCreated = new Node();
     private ArrayList< Node > grafoNodos  =  new ArrayList <>();
     private int totalNodos = grafoNodos.size();
 
-    public void setWidth(int width){
-        this.width = width;
-    }
-
-    public void setHeight(int height){
-        this.height = height;
-    }
-
-    public int getHeight(){
-        return height;
-    }
-
-    public int getWidth(){
-        return width;
-    }
-
+    /**
+     * agrega todos los nodos al grafo
+     * @param
+     */
     public void addNodes(){
-        grafoNodos.add(nodeCreated);
+        // mientras no se haya cubierto todas las columas
+        for (int widthCounter = 1; widthCounter<25 ; widthCounter++){
+            for(int heightCounter = 1; heightCounter<15 ; heightCounter++){
+                if (heightCounter != 1 && heightCounter != 25){
+                    Node newNode = new Node();
+                    newNode.setNodeName( Integer.toString(heightCounter) + "." + Integer.toString(widthCounter));
+                    grafoNodos.add(newNode);
+                }
 
+            }
+        }
     }
-
 }

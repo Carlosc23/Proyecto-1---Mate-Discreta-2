@@ -13,14 +13,6 @@ public class Node {
 
     /**
      *
-     * @param height
-     */
-    public void setNodeName(int height){
-        this.nodeName= nodeName;
-    }
-
-    /**
-     *
      * @return nodeName
      */
     public String getNodeName(){
@@ -35,27 +27,7 @@ public class Node {
         this.nodeName = nodeName;
     }
 
-    /**
-     *
-     * @return connectedNodesArrayName
-     */
-    public ArrayList<String> getConnectedNodesArrayName() {
-        return connectedNodesArrayName;
-    }
-
-    public void setConnectedNodesArrayName(ArrayList<String> connectedNodesArrayName) {
-        this.connectedNodesArrayName = connectedNodesArrayName;
-    }
-
-    public ArrayList<Integer> getConnectedWeightArrayName() {
-        return connectedWeightArrayName;
-    }
-
-    public void setConnectedWeightArrayName(ArrayList<Integer> connectedWeightArrayName) {
-        this.connectedWeightArrayName = connectedWeightArrayName;
-    }
-
-    public void agregarNode(String name, int weight){
+    public void addConnections(String name, int weight){
         connectedNodesArrayName.add(name);
         connectedWeightArrayName.add(weight);
     }
