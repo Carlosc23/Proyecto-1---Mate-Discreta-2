@@ -3,7 +3,6 @@ import java.util.ArrayList;
  * Created by DiegoC on 15/11/2016.
  */
 public class Dijkstra {
-    public ArrayList camino = new ArrayList();
 
     public  int[] dijkstra(WeightedGraph grafo, int s ){
         final int [] distancias = new int[grafo.size()];
@@ -31,9 +30,7 @@ public class Dijkstra {
                     anteriores[v] = siguiente;
                 }
             }
-            for (int elemento : anteriores) {
-                camino.add(elemento);
-            }
+
         }
         return anteriores;
 
@@ -42,6 +39,7 @@ public class Dijkstra {
     public static int nodoMinimo(int[] distancias, boolean[] visitado){
         int x = Integer.MAX_VALUE;
         int y = -1;
+
         for (int i =0; i<distancias.length; i++){
             if(!visitado[i] && distancias[i]<x){
                 y =i;
@@ -49,9 +47,6 @@ public class Dijkstra {
             }
         }return y;
     }
-
-   public ArrayList getCamino(){
-       return camino;
-   }
+    
 
 }
