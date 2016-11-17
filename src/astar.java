@@ -12,12 +12,13 @@ public class astar {
     public int resolucion; /*Debe de ser 1 menos que el tamanio del grafo cuadrado */
 
     public Nodo inicial;
-    public Nodo destino = new Nodo(resolucion, resolucion);
+    public Nodo destino;
     public Nodo fatality;
 
     public astar(int resolucion, int x, int y) {
         this.resolucion = resolucion-1; /*^^^^^*/
         inicial = new Nodo(x, y);
+        destino = new Nodo(resolucion-1 , resolucion-1);
     }
 
     public void fillTheArray(){
@@ -38,6 +39,7 @@ public class astar {
         while(fatality.getX() != destino.getX() && fatality.getY() != destino.getY()){
             vecindad(fatality);
             for (Nodo n: queue){
+
                 pesos.add(n.pesoRecorrido(resolucion));
             }
             int i = MAX_VALUE;
@@ -48,7 +50,7 @@ public class astar {
                     indice = pesos.indexOf(n);
                 }
             }
-            fatality = nodos.get(indice); 
+            fatality = nodos.get(indice);
         }
 
         return fatality;
@@ -60,26 +62,26 @@ public class astar {
         int c = n.vecinoDerecha(resolucion);
         int d = n.vecinoIzquierda(resolucion);
 
-        if (a != 0){
+        if (a != 0 && !nodos.get(a).isListo() && !nodos.get(a).isProceso()){
             queue.add(nodos.get(a));
             nodos.get(a).setProceso(true);
             nodos.get(a).setRecorrido(n.getRecorrido());
             nodos.get(a).addRecorrido(n);
 
         }
-        if (b != 0 ){
+        if (b != 0 && !nodos.get(b).isListo() && !nodos.get(b).isProceso()){
             queue.add(nodos.get(b));
             nodos.get(b).setProceso(true);
             nodos.get(b).setRecorrido(n.getRecorrido());
             nodos.get(b).addRecorrido(n);
         }
-        if (c != 0){
+        if (c != 0&& !nodos.get(c).isListo() && !nodos.get(c).isProceso()){
             queue.add(nodos.get(c));
             nodos.get(c).setProceso(true);
             nodos.get(c).setRecorrido(n.getRecorrido());
             nodos.get(c).addRecorrido(n);
         }
-        if (d != 0){
+        if (d != 0&& !nodos.get(d).isListo() && !nodos.get(d).isProceso()){
             queue.add(nodos.get(d));
             nodos.get(d).setProceso(true);
             nodos.get(d).setRecorrido(n.getRecorrido());
@@ -88,7 +90,15 @@ public class astar {
     }
 
 
+    public static void main(String [] args){
+        astar algoritmo = new astar(15, 0,0);
+        algoritmo.fillTheArray();
+        Nodo x = algoritmo.aestrella();
 
+        System.out.println(x.getX());
+        System.out.println(x.getY());
+
+    }
 
 
 
