@@ -1,3 +1,5 @@
+import com.sun.istack.internal.Pool;
+
 import java.util.ArrayList;
 
 /**
@@ -11,18 +13,22 @@ public class Implementaciones {
     public Nodo elNodo = reglas.getInicial();
     public int x = elNodo.getX();
     public int y = elNodo.getY();
+    public ArrayList recorrido = new ArrayList();
+
 
     public ArrayList prueba(){
-        while (x <= 14  && y <= 14){
-            if(x == 14 && y == 14){
+        while (elNodo.getX() <= 14  && elNodo.getY()<= 14){
+            if(elNodo.getX() == 14 && elNodo.getY() == 14){
                 break;
             }
-            else if(x == 14 && y < 14){
-                reglas.agregarNodo();
+            else if(elNodo.getX() == 14 && elNodo.getY() < 14){
+                Nodo temp = new Nodo(elNodo.getX(), elNodo.getY());
+                recorrido.add(temp);
                 reglas.subir();
             }
-            else if(y == 14 && x < 14){
-                reglas.agregarNodo();
+            else if(elNodo.getY() == 14 && elNodo.getX() <  14){
+                Nodo temp = new Nodo(elNodo.getX(), elNodo.getY());
+                recorrido.add(temp);
                 reglas.cruzar();
             }
             else{
@@ -30,29 +36,55 @@ public class Implementaciones {
                 if (cruce == null){
                     Nodo subida = reglas.DondeEsMasBaratoSubir();
                     if(subida == reglas.getInicial()){
-                        reglas.agregarNodo();
+                        Nodo temp = new Nodo(elNodo.getX(), elNodo.getY());
+                        recorrido.add(temp);
                         reglas.subir();
+
+
                     }
                     else{
-                        reglas.agregarNodo();
+                        Nodo temp = new Nodo(elNodo.getX(), elNodo.getY());
+                        recorrido.add(temp);
                         reglas.cruzar();
-                        reglas.agregarNodo();
+                        Nodo temp2 = new Nodo(elNodo.getX(), elNodo.getY());
+                        recorrido.add(temp2);
                         reglas.subir();
+
                     }
                 }
                 else if (cruce == reglas.getInicial()){
-                    reglas.agregarNodo();
+                    Nodo temp = new Nodo(elNodo.getX(), elNodo.getY());
+                    recorrido.add(temp);
                     reglas.cruzar();
+                    break;
                 }
                 else{
-                    reglas.agregarNodo();
+                    Nodo temp = new Nodo(elNodo.getX(), elNodo.getY());
+                    recorrido.add(temp);
                     reglas.subir();
-                    reglas.agregarNodo();
+                    Nodo temp2 = new Nodo(elNodo.getX(), elNodo.getY());
+                    recorrido.add(temp2);
                     reglas.cruzar();
+
                 }
             }
-        }return reglas.getRecorrido();
+        }return recorrido;
 
+    }
+
+    public static void main(String [] args){
+        Implementaciones imp = new Implementaciones();
+        ArrayList<Nodo> datos = new ArrayList<Nodo>();
+        datos = imp.prueba();
+
+        System.out.println(datos);
+
+        System.out.println(datos.get(0).getX());
+        System.out.println(datos.get(0).getY());
+        System.out.println(datos.get(1).getX());
+        System.out.println(datos.get(1).getY());
+        System.out.println(datos.get(2).getX());
+        System.out.println(datos.get(2).getY());
     }
 
 

@@ -32,4 +32,6 @@ public class Nodo {
         int numero = y*resolucion + x;
         return ""+numero;
     }
+
+
 }

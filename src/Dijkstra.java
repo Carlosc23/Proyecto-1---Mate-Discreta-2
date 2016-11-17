@@ -1,20 +1,13 @@
-import java.util.Objects;
-
-import static java.sql.DriverManager.println;
-
+import java.util.ArrayList;
 /**
- * Created by DiegoC  on 16/11/2016.
+ * Created by DiegoC on 15/11/2016.
  */
-public class Aestrella {
+public class Dijkstra {
 
-
-    public  int[] aestrella(WeightedGraph grafo, int s ){
-
+    public  int[] dijkstra(WeightedGraph grafo, int s ){
         final int [] distancias = new int[grafo.size()];
         final int [] anteriores = new int[grafo.size()];
         final boolean [] visitado = new boolean[grafo.size()];
-
-
 
         for(int i=0; i<distancias.length; i++ ){
             distancias[i] = Integer.MAX_VALUE;
@@ -39,7 +32,6 @@ public class Aestrella {
             }
 
         }
-
         return anteriores;
 
     }
@@ -56,19 +48,5 @@ public class Aestrella {
         }return y;
     }
 
-    public static void main(String [] args){
-
-
-        WeightedGraph grafo = new WeightedGraph(15);
-        grafo.lasEtiquetas();
-        Aestrella algoritmo = new Aestrella();
-
-        System.out.println(grafo.size());
-
-        int[] recuerdos = algoritmo.aestrella(grafo, 0);
-
-
-        System.out.println();
-    }
 
 }

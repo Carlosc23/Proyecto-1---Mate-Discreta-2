@@ -9,7 +9,17 @@ public class WeightedGraph {
 
     public WeightedGraph(int n ){
         aristas = new int [n][n];
-        etiquetas = new Object[n];
+        etiquetas = new Object [n*n];
+
+
+    }
+
+    public void lasEtiquetas(){
+        int contador = 0;
+        for(Object elemento: etiquetas){
+            etiquetas[contador] = new String(String.valueOf(contador));
+            contador++;
+        }
     }
 
     public int size() {return etiquetas.length; }
@@ -20,6 +30,8 @@ public class WeightedGraph {
     public Object getEtiqueta(int nodo) {
         return etiquetas[nodo];
     }
+
+    public Object[] todasEtiquetas (){return etiquetas; }
 
     public void addArtista(int origen, int objetivo, int peso){
         aristas[origen][objetivo] = peso;
