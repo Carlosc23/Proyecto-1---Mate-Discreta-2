@@ -6,70 +6,85 @@ import java.util.ArrayList;
  * UVG
  */
 public class Grafo {
-    private ArrayList <Unidad> grafo = new ArrayList<>();
+    private ArrayList <Unidad> grafoLista = new ArrayList<>();
 
     /**
      * Llena la lista de los nodos y sus conexiones
      */
     public void addNodes(){
-        //esquina 0.0
-        Unidad esquina0 = new Unidad(0,0);
-        esquina0.addConnectedPoints(1,0);
-        esquina0.addConnectedPoints(0,1);
-        grafo.add(esquina0);
 
-        //esquina 15.0
-        Unidad esquina1 = new Unidad(15,0);
-        esquina1.addConnectedPoints(14,0);
-        esquina1.addConnectedPoints(15,1);
-        grafo.add(esquina1);
+        for (int X = 0 ; X < 15 ; X++){
+            for (int Y = 0 ; Y < 15 ; Y++){
 
-        // esquina 0.15
-        Unidad esquina2 = new Unidad(0,15);
-        esquina2.addConnectedPoints(0,14);
-        esquina2.addConnectedPoints(15,0);
-        grafo.add(esquina2);
+                if ( X == 0 && Y == 0) {
+                    // esquina superior izquierda
+                    Unidad esquinaSI = new Unidad(X, Y);
+                    esquinaSI.addConnectedPoints((X+1), Y);
+                    esquinaSI.addConnectedPoints(X, (Y+1));
+                    grafoLista.add(esquinaSI);
+                }
+                else if ( X == 15 && Y == 0){
+                    // esquina superior derecha
+                    Unidad esquinaSD = new Unidad(X,Y);
+                    esquinaSD.addConnectedPoints((X-1),Y);
+                    esquinaSD.addConnectedPoints(X,(Y+1));
+                    grafoLista.add(esquinaSD);
+                }
+                else if ( X == 0 && Y == 15){
+                    // esquina inferior derecha
+                    Unidad esquinaID = new Unidad(X,Y);
+                    esquinaID.addConnectedPoints(X,(Y-1));
+                    esquinaID.addConnectedPoints((X+1),Y);
+                    grafoLista.add(esquinaID);
+                }
+                else if (X == 15 && Y == 15){
+                    // esquina inferior izquierda
+                    Unidad esquinaII = new Unidad(X,Y);
+                    esquinaII.addConnectedPoints((X-1),Y);
+                    esquinaII.addConnectedPoints(X,(Y-1));
+                    grafoLista.add(esquinaII);
+                }
 
-        //esquina 15.15
-        Unidad esquina3 = new Unidad(15,15);
-        esquina3.addConnectedPoints(14,15);
-        esquina3.addConnectedPoints(15,14);
-        grafo.add(esquina3);
+                else if ( X == 0 && Y > 0 && Y < 15){
+                    // columna izquierda
+                    Unidad colI = new Unidad (X,Y);
+                    colI.addConnectedPoints((X),(Y-1));
+                    colI.addConnectedPoints((X),(Y+1));
+                    colI.addConnectedPoints((X+1),(Y));
+                    grafoLista.add(colI);
+                }
 
-        //parte central
-        for (int X = 1 ; X < 14 ; X++){
-            for (int Y = 1 ; Y < 14 ; Y++){
-                Unidad ID = new Unidad (X,Y);
-                ID.addConnectedPoints((X-1),(Y));
-                ID.addConnectedPoints((X+1),(Y));
-                ID.addConnectedPoints((X),(Y-1));
-                ID.addConnectedPoints((X),(Y+1));
+                else if ( X == 15 && Y > 0 && Y < 15){
+                    // colmuna derecha
+                    Unidad colD = new Unidad (X,Y);
+                    colD.addConnectedPoints((X),(Y-1));
+                    colD.addConnectedPoints((X),(Y+1));
+                    colD.addConnectedPoints((X-1),(Y));
+                    grafoLista.add(colD);
+                }
+
+                else if ( Y == 0 && X < 15 && X > 0){
+                    //fila superior
+                    Unidad filS = new Unidad (X,0);
+                    filS.addConnectedPoints((i-1),(0));
+                    filS.addConnectedPoints((i+1),(0));
+                    filS.addConnectedPoints((i),(1));
+                    grafoLista.add(filS);
+                }
+
+                else if ( Y == 15 && X < 15 && X > 0){
+                    // fila inferior
+                }
+
+                else {
+                    //interior
+                }
             }
-
-        }
-
-        // columna izqueirda
-        for (int i = 1 ; i < 14 ; i++ ){
-            Unidad ID = new Unidad (0,i);
-            ID.addConnectedPoints((0),(i-1));
-            ID.addConnectedPoints((0),(i+1));
-            ID.addConnectedPoints((1),(i));
-        }
-
-        // columna derecha
-        for (int i = 1 ; i < 14 ; i++ ){
-            Unidad ID = new Unidad (15,i);
-            ID.addConnectedPoints((15),(i-1));
-            ID.addConnectedPoints((15),(i+1));
-            ID.addConnectedPoints((14),(i));
         }
 
         //fila arriba
         for (int i = 1 ; i < 14 ; i++ ){
-            Unidad ID = new Unidad (i,0);
-            ID.addConnectedPoints((i-1),(0));
-            ID.addConnectedPoints((i+1),(0));
-            ID.addConnectedPoints((i),(1));
+
         }
 
         //fila abajo
@@ -78,6 +93,11 @@ public class Grafo {
             ID.addConnectedPoints((i+1),(15));
             ID.addConnectedPoints((i-1),(15));
             ID.addConnectedPoints((i),(14));
+            grafoLista.add(ID);
         }
+    }
+
+    public ArrayList<Unidad> getGrafoLista() {
+        return grafoLista;
     }
 }
