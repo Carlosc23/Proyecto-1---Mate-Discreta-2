@@ -79,12 +79,13 @@ public class Implementaciones {
 
         System.out.println(datos);
 
-        System.out.println(datos.get(0).getX());
-        System.out.println(datos.get(0).getY());
-        System.out.println(datos.get(1).getX());
-        System.out.println(datos.get(1).getY());
-        System.out.println(datos.get(2).getX());
-        System.out.println(datos.get(2).getY());
+        System.out.println(datos.get(25).getX());
+        System.out.println(datos.get(25).getY());
+        System.out.println(datos.get(27).getX());
+        System.out.println(datos.get(27).getY());
+        System.out.println(datos.get(26).getX());
+        System.out.println(datos.get(26).getY());
+
     }
 
 

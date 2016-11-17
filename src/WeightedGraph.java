@@ -9,7 +9,7 @@ public class WeightedGraph {
 
     public WeightedGraph(int n ){
         aristas = new int [n][n];
-        etiquetas = new Object [n*n];
+        etiquetas = new Object [n];
 
 
     }
